@@ -1,0 +1,2 @@
+- [id, null, bigint, null, base36_decode]
+- [body, null, text, null, reddit_deleted]

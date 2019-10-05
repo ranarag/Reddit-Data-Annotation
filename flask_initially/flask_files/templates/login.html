@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+{% block body %}
+    <h1>Login</h1>
+    {% if 'username' in session %}
+        <p>Welcome back {{session['username']}}!</p>
+        <form action="{{url_for('login')}}" method="post">
+            <input type="submit" name="logout" value="logout" />
+        </form>
+    {% else %}
+        <p>Enter your credentials:</p>
+        <form action="{{url_for('login')}}" method="post">
+            <p>Username:<br/>
+            <input type="text" name="username" /></p>
+            <p>Password:<br/>
+            <input type="password" name="passwd" /></p>
+            <p><input type="submit" value="submit" /></p>
+        </form>
+        <p>Not yet registered??<br/>
+        <input type="submit" name="register" value="register"/></p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@Anurrag's</title>
+</head>
+<body>
+    <div id="content">
+        {% block body %}{% endblock %}
+    </div>
+    <div id="nav">
+        Navigation:<br />
+        <ul>
+            {% block nav %}{% endblock %}
+
+                    <li><a href="/about/">about</a></li>
+                    <li><a href="/contact/">contact</a></li>
+                    <hr id="nav"/>
+                    <!-- {% if 'username' in session %}
+                    <li><a href="{{url_for('login')}}">logout</a>
+                    {% else %} -->
+                    <li><a href="{{url_for('login')}}">login</a></li>
+                    <li><a href="{{url_for('register')}}">register</a></li>
+                    <!-- {% endif %} -->
+                </ul>
+            </div>
+            <div id="flashed">
+            {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+                {{message}}
+            {% endfor %}
+            {% endwith %}
+            </div>
+</body>
+</html>

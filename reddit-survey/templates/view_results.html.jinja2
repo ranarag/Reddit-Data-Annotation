@@ -1,0 +1,61 @@
+<!doctype html>
+
+{% extends "base2.html" %}
+
+
+
+{% block body %}
+
+<div class="container">
+    <h1 id="header" class="text-center">{{ survey.title }}</h1>
+
+    <div id="body">
+        <div class="progress" style="height:3px">
+            <div class="progress-bar progress-bar-success" role="progressbar"
+              aria-valuenow="{{ progress_percent }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ progress_percent }}%;">
+            </div>
+        </div>
+
+        <h2 class="head" >For the subreddit
+            <a href="http://reddit.com/r/{{ subreddit.name }}" target="_blank">r/{{ subreddit.name }}</a>,
+            what do you think provides more value,
+            the content of the post themselves,
+            or the responses received by them?
+        </h2>
+
+        <form  name="response" action="/result/{{ subreddit.id }}" method="get">
+            {% for post in posts: %}
+            <li>
+                <h3 class="head"><a href="{{ post.url }}">{{ post.title }}</a></h3>
+                <p>submitted by <a href="http://reddit.com/user/{{ post.author }}">{{ post.author }}</a>,
+                   on {{ post.date }}. <a href="{{ post.comment }}">{{ post.n_comments}} comments</a>.
+                </p>
+
+                <p>The value of the above post comes from
+                   the content of the post itself,
+                   rather than the pottentital responses it may generate.
+                </p>
+
+                <div class="form-group">
+                {% with res_dict = results[post['id']] %}
+                    {% for val in res_dict.values() %}
+                        <div class ="outcol">{{ val }}</div>
+
+                    {% endfor %}
+                    <br>
+                {% endwith %}
+
+                </div>
+            </li>
+            {% endfor %}
+            <div class="end">
+                <input  type="hidden" name="c" value="{{c}}" />
+                <span class="badge" >{{ nmore - 1 }} more to go</span>
+                <input type="submit" class="btn btn-primary pull-right" value="Submit">
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

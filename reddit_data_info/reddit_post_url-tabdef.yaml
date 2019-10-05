@@ -1,0 +1,2 @@
+- [id, null, bigint, null, base36_decode]
+- [url, null, text, null, null]

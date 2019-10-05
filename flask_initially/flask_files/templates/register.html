@@ -1,0 +1,18 @@
+{% extends "index.html" %}
+{% block body %}
+    <h1>Register</h1>
+    <p>Enter the required information:</p>
+        <form action="{{url_for('register')}}" method="post">
+            <p>Name:<br/>
+            <input type="text" name="name" /></p>
+            <p>contact number<br/>
+            <input type="tel" pattern='[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}' title='Phone Number (Format: +99(99)9999-9999)' name="contact_no" /></p>
+            <p>email:(this would be your username)<br/>
+            <input type="email" name="username" /></p>
+            <p>Password:<br/>
+            <input type="password" name="passwd" /></p>
+            <p><input type="submit" value="submit" /></p>
+        </form>
+
+
+{% endblock %}
